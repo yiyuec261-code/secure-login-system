@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Secure Login System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Register</h1>
+
+        <input type="text" placeholder="Username">
+
+        <input type="email" placeholder="Email">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <p id="strengthText"></p>
+
+        <button>Register</button>
+
+    </div>
+
+<script>
+
+const password = document.getElementById("password");
+
+const strengthText = document.getElementById("strengthText");
+
+password.addEventListener("input", function(){
+
+    const value = password.value;
+
+    let strength = 0;
+
+    if(value.length >= 8){
+        strength++;
+    }
+
+    if(/[A-Z]/.test(value)){
+        strength++;
+    }
+
+    if(/[0-9]/.test(value)){
+        strength++;
+    }
+
+    if(/[^A-Za-z0-9]/.test(value)){
+        strength++;
+    }
+
+    if(strength <= 1){
+
+        strengthText.innerHTML = "Weak Password";
+
+        strengthText.style.color = "red";
+
+    }
+
+    else if(strength <= 3){
+
+        strengthText.innerHTML = "Medium Password";
+
+        strengthText.style.color = "orange";
+
+    }
+
+    else{
+
+        strengthText.innerHTML = "Strong Password";
+
+        strengthText.style.color = "lime";
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
